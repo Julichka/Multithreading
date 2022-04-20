@@ -9,24 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? ListItem else { return  UITableViewCell() }
-        clearRow(cell)
-     
-        // Create group notify - when group is completed then cell get rows
-        parsingGroup.notify(queue: .main) {
-            cell.username?.text = self.names[indexPath.row]
-            cell.icon?.image = UIImage(named: self.icons[indexPath.row])
-            cell.date?.text = self.dates[indexPath.row]
-            cell.message?.text = self.messages[indexPath.row]
-     
-          // Stop spinner work
-            self.stopIndicator()
-        }
-        return cell
-    }
-    
-    
     @IBOutlet weak var table: UITableView!
     
     let cellReuseIdentifier = "cell"
@@ -112,9 +94,9 @@ class ViewController: UIViewController {
       }
     
     private func clearRow(_ cell: ListItem) {
-        cell.username?.text = ""
-        cell.date?.text = ""
-        cell.message?.text = ""
+        cell.username?.text = "r"
+        cell.date?.text = "r"
+        cell.message?.text = "r"
       }
 }
 
@@ -125,5 +107,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return icons.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ListItem
+        clearRow(cell)
+     
+        // Create group notify - when group is completed then cell get rows
+        parsingGroup.notify(queue: .main) {
+            cell.username?.text = self.names[indexPath.row]
+            cell.icon?.image = UIImage(named: self.icons[indexPath.row])
+            cell.date?.text = self.dates[indexPath.row]
+            cell.message?.text = self.messages[indexPath.row]
+            print("...")
+          // Stop spinner work
+            self.stopIndicator()
+        }
+        return cell
     }
 }
