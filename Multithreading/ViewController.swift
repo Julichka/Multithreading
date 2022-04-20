@@ -10,17 +10,15 @@ import UIKit
 class ViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("..")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? ListItem else { return  UITableViewCell() }
-        print("..444")
         clearRow(cell)
      
         // Create group notify - when group is completed then cell get rows
         parsingGroup.notify(queue: .main) {
-            cell.username.text = self.names[indexPath.row]
-            cell.icon.image = UIImage(named: self.icons[indexPath.row])
-            cell.date.text = self.dates[indexPath.row]
-            cell.message.text = self.messages[indexPath.row]
+            cell.username?.text = self.names[indexPath.row]
+            cell.icon?.image = UIImage(named: self.icons[indexPath.row])
+            cell.date?.text = self.dates[indexPath.row]
+            cell.message?.text = self.messages[indexPath.row]
      
           // Stop spinner work
             self.stopIndicator()
@@ -49,7 +47,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        table.register(ListItem.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         checkStore()
         moveIndicator()
@@ -114,9 +112,9 @@ class ViewController: UIViewController {
       }
     
     private func clearRow(_ cell: ListItem) {
-        cell.username.text = ""
-        cell.date.text = ""
-        cell.message.text = ""
+        cell.username?.text = ""
+        cell.date?.text = ""
+        cell.message?.text = ""
       }
 }
 
