@@ -40,10 +40,6 @@ class ViewController: UIViewController {
             if let path = Bundle.main.path(forResource: "UsersData", ofType:"plist"){
                 let dict = NSDictionary(contentsOfFile: path) as! [String: Any]
                 self.appendDateFromPlistConcurrent(dict)
-                DispatchQueue.main.async {
-                    print("2...\(self.icons.count)")
-                    self.table.reloadData()
-                }
             }
         }
         print("1...\(self.icons.count)")
@@ -106,7 +102,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return icons.count
+        return 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
