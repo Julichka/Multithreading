@@ -13,6 +13,7 @@
 		328B79E7280FB7060088742A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328B79E5280FB7060088742A /* Main.storyboard */; };
 		328B79E9280FB7080088742A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328B79E8280FB7080088742A /* Assets.xcassets */; };
 		328B79EC280FB7080088742A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328B79EA280FB7080088742A /* LaunchScreen.storyboard */; };
+		328B79F4280FB85F0088742A /* UsersData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 328B79F3280FB85F0088742A /* UsersData.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		328B79E8280FB7080088742A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		328B79EB280FB7080088742A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		328B79ED280FB7080088742A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		328B79F3280FB85F0088742A /* UsersData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UsersData.plist; path = ../../../../Downloads/UsersData.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				328B79E8280FB7080088742A /* Assets.xcassets */,
 				328B79EA280FB7080088742A /* LaunchScreen.storyboard */,
 				328B79ED280FB7080088742A /* Info.plist */,
+				328B79F3280FB85F0088742A /* UsersData.plist */,
 			);
 			path = Multithreading;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				328B79EC280FB7080088742A /* LaunchScreen.storyboard in Resources */,
+				328B79F4280FB85F0088742A /* UsersData.plist in Resources */,
 				328B79E9280FB7080088742A /* Assets.xcassets in Resources */,
 				328B79E7280FB7060088742A /* Main.storyboard in Resources */,
 			);
