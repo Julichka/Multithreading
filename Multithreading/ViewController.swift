@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var table: UITableView!
     
-    let cellReuseIdentifier = "cell"
+    let cellReuseIdentifier = "ListItem"
     
     var names:[String] = []
     var dates:[String] = []
@@ -27,9 +27,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         table.delegate = self
         table.dataSource = self
-        table.register(ListItem.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         checkStore()
         moveIndicator()
@@ -90,13 +90,11 @@ class ViewController: UIViewController {
       }
     
     private func clearRow(_ cell: ListItem) {
-        cell.username?.text = "r"
-        cell.date?.text = "r"
-        cell.message?.text = "r"
+        cell.username.text = ""
+        cell.date.text = ""
+        cell.message.text = ""
       }
-}
-
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -106,19 +104,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ListItem
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? ListItem else { return  UITableViewCell() }
+     
         clearRow(cell)
      
         // Create group notify - when group is completed then cell get rows
         parsingGroup.notify(queue: .main) {
-            cell.username?.text = self.names[indexPath.row]
-            cell.icon?.image = UIImage(named: self.icons[indexPath.row])
-            cell.date?.text = self.dates[indexPath.row]
-            cell.message?.text = self.messages[indexPath.row]
-            print("...")
+          cell.username.text = self.names[indexPath.row]
+          cell.icon.image = UIImage(named: self.icons[indexPath.row])
+          cell.date.text = self.dates[indexPath.row]
+          cell.message.text = self.messages[indexPath.row]
+     
           // Stop spinner work
-            self.stopIndicator()
+          self.stopIndicator()
         }
+     
         return cell
-    }
+      }
 }
